@@ -97,6 +97,8 @@
 
 + (instancetype)waitForDuration:(NSTimeInterval)duration
 {
+    NSAssert(duration >= 0.0f, @"%@ wait duration must be non-negative.", NSStringFromClass([RZViewAction class]));
+    
     RZViewAction *waitAction = [[RZViewWaitAction alloc] init];
     waitAction.duration = duration;
     
@@ -195,7 +197,7 @@
     }];
     
     if ( completion != nil ) {
-        dispatch_group_notify(actionGroup, dispatch_get_main_queue(), ^() {
+        dispatch_group_notify(actionGroup, dispatch_get_main_queue(), ^{
             completion(YES);
         });
     }

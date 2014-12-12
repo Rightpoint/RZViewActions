@@ -1,15 +1,15 @@
 //
-//  ViewController.m
+//  RZViewController.m
 //  RZViewActionsSample
 //
 //  Created by Rob Visentin on 12/11/14.
 //  Copyright (c) 2014 Raizlabs. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "RZViewController.h"
 #import "UIView+RZViewActions.h"
 
-@implementation ViewController
+@implementation RZViewController
 
 - (void)viewDidAppear:(BOOL)animated
 {

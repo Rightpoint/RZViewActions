@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D4C5F3C21A39EC5500CC6FB3"
-               BuildableName = "RZViewActionsSample.app"
-               BlueprintName = "RZViewActionsSample"
-               ReferencedContainer = "container:RZViewActionsSample.xcodeproj">
+               BlueprintIdentifier = "D4ADEB9E1A3B41E800F71709"
+               BuildableName = "RZViewActionsDemo.app"
+               BlueprintName = "RZViewActionsDemo"
+               ReferencedContainer = "container:RZViewActionsDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -28,10 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D4C5F3DB1A39EC5500CC6FB3"
-               BuildableName = "RZViewActionsSampleTests.xctest"
-               BlueprintName = "RZViewActionsSampleTests"
-               ReferencedContainer = "container:RZViewActionsSample.xcodeproj">
+               BlueprintIdentifier = "D4ADEBB71A3B41E800F71709"
+               BuildableName = "RZViewActionsDemoTests.xctest"
+               BlueprintName = "RZViewActionsDemoTests"
+               ReferencedContainer = "container:RZViewActionsDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,20 +46,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D4C5F3DB1A39EC5500CC6FB3"
-               BuildableName = "RZViewActionsSampleTests.xctest"
-               BlueprintName = "RZViewActionsSampleTests"
-               ReferencedContainer = "container:RZViewActionsSample.xcodeproj">
+               BlueprintIdentifier = "D4ADEBB71A3B41E800F71709"
+               BuildableName = "RZViewActionsDemoTests.xctest"
+               BlueprintName = "RZViewActionsDemoTests"
+               ReferencedContainer = "container:RZViewActionsDemo.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D4C5F3C21A39EC5500CC6FB3"
-            BuildableName = "RZViewActionsSample.app"
-            BlueprintName = "RZViewActionsSample"
-            ReferencedContainer = "container:RZViewActionsSample.xcodeproj">
+            BlueprintIdentifier = "D4ADEB9E1A3B41E800F71709"
+            BuildableName = "RZViewActionsDemo.app"
+            BlueprintName = "RZViewActionsDemo"
+            ReferencedContainer = "container:RZViewActionsDemo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -75,10 +75,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D4C5F3C21A39EC5500CC6FB3"
-            BuildableName = "RZViewActionsSample.app"
-            BlueprintName = "RZViewActionsSample"
-            ReferencedContainer = "container:RZViewActionsSample.xcodeproj">
+            BlueprintIdentifier = "D4ADEB9E1A3B41E800F71709"
+            BuildableName = "RZViewActionsDemo.app"
+            BlueprintName = "RZViewActionsDemo"
+            ReferencedContainer = "container:RZViewActionsDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -93,10 +93,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D4C5F3C21A39EC5500CC6FB3"
-            BuildableName = "RZViewActionsSample.app"
-            BlueprintName = "RZViewActionsSample"
-            ReferencedContainer = "container:RZViewActionsSample.xcodeproj">
+            BlueprintIdentifier = "D4ADEB9E1A3B41E800F71709"
+            BuildableName = "RZViewActionsDemo.app"
+            BlueprintName = "RZViewActionsDemo"
+            ReferencedContainer = "container:RZViewActionsDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

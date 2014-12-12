@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  RZViewController.h
 //  RZViewActionsSample
 //
 //  Created by Rob Visentin on 12/11/14.
@@ -9,7 +9,7 @@
 
 @import UIKit;
 
-@interface ViewController : UIViewController
+@interface RZViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *testLabel;
 @property (weak, nonatomic) IBOutlet UIView *testView;

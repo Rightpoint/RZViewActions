@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>7F8950C2-BADA-43A6-B69E-20CBA4B96619</string>
+	<string>7D1239F6-0365-48F9-805F-BD935450B6FB</string>
 	<key>IDESourceControlProjectName</key>
-	<string>RZViewActionsSample</string>
+	<string>RZViewActionsDemo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>2B1C4EC84A7DA95170BA7A2ED832A6CD154ADD10</key>
 		<string>https://github.com/jvisenti/RZViewActions.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>RZViewActionsSample/RZViewActionsSample.xcodeproj</string>
+	<string>Example/RZViewActionsDemo.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>2B1C4EC84A7DA95170BA7A2ED832A6CD154ADD10</key>

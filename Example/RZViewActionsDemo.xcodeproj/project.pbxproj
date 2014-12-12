@@ -1,0 +1,310 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D4ADEBA51A3B41E800F71709 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ADEBA41A3B41E800F71709 /* main.m */; };
+		D4ADEBA81A3B41E800F71709 /* RZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ADEBA71A3B41E800F71709 /* RZAppDelegate.m */; };
+		D4ADEBCA1A3B427400F71709 /* RZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ADEBC91A3B427400F71709 /* RZViewController.m */; };
+		D4ADEBCF1A3B429000F71709 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4ADEBCB1A3B429000F71709 /* LaunchScreen.xib */; };
+		D4ADEBD01A3B429000F71709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4ADEBCD1A3B429000F71709 /* Main.storyboard */; };
+		D4ADEBD31A3B42CD00F71709 /* UIView+RZViewActions.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ADEBD21A3B42CD00F71709 /* UIView+RZViewActions.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D4ADEB9F1A3B41E800F71709 /* RZViewActionsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RZViewActionsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4ADEBA31A3B41E800F71709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4ADEBA41A3B41E800F71709 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D4ADEBA61A3B41E800F71709 /* RZAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RZAppDelegate.h; sourceTree = "<group>"; };
+		D4ADEBA71A3B41E800F71709 /* RZAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RZAppDelegate.m; sourceTree = "<group>"; };
+		D4ADEBC81A3B427400F71709 /* RZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZViewController.h; sourceTree = "<group>"; };
+		D4ADEBC91A3B427400F71709 /* RZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZViewController.m; sourceTree = "<group>"; };
+		D4ADEBCC1A3B429000F71709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
+		D4ADEBCE1A3B429000F71709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		D4ADEBD11A3B42CD00F71709 /* UIView+RZViewActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+RZViewActions.h"; path = "../UIView+RZViewActions.h"; sourceTree = "<group>"; };
+		D4ADEBD21A3B42CD00F71709 /* UIView+RZViewActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+RZViewActions.m"; path = "../UIView+RZViewActions.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D4ADEB9C1A3B41E800F71709 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D4ADEB961A3B41E800F71709 = {
+			isa = PBXGroup;
+			children = (
+				D4ADEBD41A3B42D100F71709 /* RZViewActions */,
+				D4ADEBA11A3B41E800F71709 /* RZViewActionsDemo */,
+				D4ADEBA01A3B41E800F71709 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D4ADEBA01A3B41E800F71709 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D4ADEB9F1A3B41E800F71709 /* RZViewActionsDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D4ADEBA11A3B41E800F71709 /* RZViewActionsDemo */ = {
+			isa = PBXGroup;
+			children = (
+				D4ADEBA61A3B41E800F71709 /* RZAppDelegate.h */,
+				D4ADEBA71A3B41E800F71709 /* RZAppDelegate.m */,
+				D4ADEBC81A3B427400F71709 /* RZViewController.h */,
+				D4ADEBC91A3B427400F71709 /* RZViewController.m */,
+				D4ADEBCB1A3B429000F71709 /* LaunchScreen.xib */,
+				D4ADEBCD1A3B429000F71709 /* Main.storyboard */,
+				D4ADEBA21A3B41E800F71709 /* Supporting Files */,
+			);
+			path = RZViewActionsDemo;
+			sourceTree = "<group>";
+		};
+		D4ADEBA21A3B41E800F71709 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D4ADEBA31A3B41E800F71709 /* Info.plist */,
+				D4ADEBA41A3B41E800F71709 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D4ADEBD41A3B42D100F71709 /* RZViewActions */ = {
+			isa = PBXGroup;
+			children = (
+				D4ADEBD11A3B42CD00F71709 /* UIView+RZViewActions.h */,
+				D4ADEBD21A3B42CD00F71709 /* UIView+RZViewActions.m */,
+			);
+			name = RZViewActions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D4ADEB9E1A3B41E800F71709 /* RZViewActionsDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4ADEBC21A3B41E800F71709 /* Build configuration list for PBXNativeTarget "RZViewActionsDemo" */;
+			buildPhases = (
+				D4ADEB9B1A3B41E800F71709 /* Sources */,
+				D4ADEB9C1A3B41E800F71709 /* Frameworks */,
+				D4ADEB9D1A3B41E800F71709 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RZViewActionsDemo;
+			productName = RZViewActionsDemo;
+			productReference = D4ADEB9F1A3B41E800F71709 /* RZViewActionsDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D4ADEB971A3B41E800F71709 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Raizlabs;
+				TargetAttributes = {
+					D4ADEB9E1A3B41E800F71709 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = D4ADEB9A1A3B41E800F71709 /* Build configuration list for PBXProject "RZViewActionsDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D4ADEB961A3B41E800F71709;
+			productRefGroup = D4ADEBA01A3B41E800F71709 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D4ADEB9E1A3B41E800F71709 /* RZViewActionsDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D4ADEB9D1A3B41E800F71709 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4ADEBCF1A3B429000F71709 /* LaunchScreen.xib in Resources */,
+				D4ADEBD01A3B429000F71709 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D4ADEB9B1A3B41E800F71709 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4ADEBCA1A3B427400F71709 /* RZViewController.m in Sources */,
+				D4ADEBD31A3B42CD00F71709 /* UIView+RZViewActions.m in Sources */,
+				D4ADEBA81A3B41E800F71709 /* RZAppDelegate.m in Sources */,
+				D4ADEBA51A3B41E800F71709 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D4ADEBCB1A3B429000F71709 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4ADEBCC1A3B429000F71709 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		D4ADEBCD1A3B429000F71709 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4ADEBCE1A3B429000F71709 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D4ADEBC01A3B41E800F71709 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D4ADEBC11A3B41E800F71709 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D4ADEBC31A3B41E800F71709 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RZViewActionsDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D4ADEBC41A3B41E800F71709 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RZViewActionsDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D4ADEB9A1A3B41E800F71709 /* Build configuration list for PBXProject "RZViewActionsDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4ADEBC01A3B41E800F71709 /* Debug */,
+				D4ADEBC11A3B41E800F71709 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4ADEBC21A3B41E800F71709 /* Build configuration list for PBXNativeTarget "RZViewActionsDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4ADEBC31A3B41E800F71709 /* Debug */,
+				D4ADEBC41A3B41E800F71709 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D4ADEB971A3B41E800F71709 /* Project object */;
+}

@@ -1,18 +1,18 @@
 //
-//  AppDelegate.m
-//  RZViewActionsSample
+//  RZAppDelegate.m
+//  RZViewActionsDemo
 //
-//  Created by Rob Visentin on 12/11/14.
+//  Created by Rob Visentin on 12/12/14.
 //  Copyright (c) 2014 Raizlabs. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "RZAppDelegate.h"
 
-@interface AppDelegate ()
+@interface RZAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation RZAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

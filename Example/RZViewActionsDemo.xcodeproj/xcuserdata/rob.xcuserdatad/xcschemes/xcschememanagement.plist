@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>RZViewActionsSample.xcscheme</key>
+		<key>RZViewActionsDemo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,12 +12,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>D4C5F3C21A39EC5500CC6FB3</key>
+		<key>D4ADEB9E1A3B41E800F71709</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D4C5F3DB1A39EC5500CC6FB3</key>
+		<key>D4ADEBB71A3B41E800F71709</key>
 		<dict>
 			<key>primary</key>
 			<true/>

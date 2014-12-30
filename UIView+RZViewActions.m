@@ -136,14 +136,17 @@
 {
     if ( completion != nil ) {
         if ( self.duration > 0.0f ) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                completion(YES);
-            });
+            [self performSelector:@selector(_finishedWithCompletion:) withObject:completion afterDelay:self.duration inModes:@[NSDefaultRunLoopMode, NSRunLoopCommonModes]];
         }
         else {
-            completion(YES);
+            [self _finishedWithCompletion:completion];
         }
     }
+}
+
+- (void)_finishedWithCompletion:(RZViewActionCompletion)completion
+{
+    completion(YES);
 }
 
 @end

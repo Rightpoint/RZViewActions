@@ -16,7 +16,7 @@ RZViewAction *changeBg = [RZViewAction action:^{
   NSLog(@"The view changed background color over 1 second");
 }];
 ```
-This simple usage may not be particularly useful on its own, but is the fundamental building block for more complex actions. Note that actions can be stored and reused multiple times. If you do store an action, make sure to avoid retain cycles by using weak references to self where necessary within the animation block.
+This simple usage may not be particularly useful on its own, but is the fundamental building block for more complex actions. Note that actions can be stored and reused multiple times. If you do store an action, avoid retain cycles by using weak references within the animation block to any objects that might retain ownership of the action.
 
 ## Sequences
 Basic actions can be combined in sequences that run each action to completion before running the next in the sequence:

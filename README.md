@@ -1,5 +1,10 @@
 RZViewActions
 =============
+<p align="center">
+<img src="http://cl.ly/image/0y0n2C1B1M1X/rzva.gif"
+alt="RZViewActions">
+</p>
+## Overview
 It can be difficult and unwieldy to perform complex animations using `[UIView animateWithDuration...]`, especially when trying to manage several concurrent animations and their completion blocks. Core Animation offers some help with `CAAnimationGroup`, but realistically using Core Animation for such tasks can be wordy and just as cumbersome.
 `RZViewActions` offers a solution.
 
@@ -8,26 +13,26 @@ It can be difficult and unwieldy to perform complex animations using `[UIView an
 ```
 RZViewAction *changeBg = [RZViewAction action:^{
         self.view.backgroundColor = [UIColor blueColor];
-} withDuration:1.0f];
+} withDuration:1.0];
 
 [UIView rz_runAction:changeBg withCompletion:^(BOOL finished) {
   NSLog(@"The view changed background color over 1 second");
 }];
 ```
-This simple usage may not be particularly useful on its own, but is the fundamental building block for more complex actions.
+This simple usage may not be particularly useful on its own, but is the fundamental building block for more complex actions. Note that actions can be stored and reused multiple times. If you do store an action, avoid retain cycles by using weak references within the animation block to any objects that might retain ownership of the action.
 
 ## Sequences
 Basic actions can be combined in sequences that run each action to completion before running the next in the sequence:
 ```
 RZViewAction *rotate = [RZViewAction action:^{
         self.label.transform = CGAffineTransformMakeRotation(M_PI_2);
-} withOptions:UIViewAnimationOptionCurveEaseInOut duration:3.0f];
+} withOptions:UIViewAnimationOptionCurveEaseInOut duration:3.0];
     
-RZViewAction *wait = [RZViewAction waitForDuration:2.0f];
+RZViewAction *wait = [RZViewAction waitForDuration:2.0];
 
 RZViewAction *fade = [RZViewAction action:^{
   self.label.alpha = 0.5f;
-} withDuration:1.0f];
+} withDuration:1.0];
     
 RZViewAction *seq = [RZViewAction sequence:@[rotate, wait, fade]];
 

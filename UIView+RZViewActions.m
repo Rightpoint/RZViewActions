@@ -76,9 +76,9 @@
 {
     self = [super init];
     if ( self ) {
-        self.block = block;
-        self.options = options;
-        self.duration = duration;
+        _block = block;
+        _options = options;
+        _duration = duration;
     }
     return self;
 }

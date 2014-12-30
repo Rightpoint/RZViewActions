@@ -81,7 +81,7 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
  *  Returns a new action with the given animation options and duration. 
  *  The action block is used as a UIView animation block, and therefore must not be nil.
  *
- *  @note Unlike UIView animation blocks, the action block is copied, so be wary of retain cycles if storing actions for later use.
+ *  @note The action block is copied, so make sure to use weak references to objects that may retain ownnership of the action.
  *  @see UIView(UIViewAnimationWithBlocks)
  */
 + (instancetype)action:(RZViewActionBlock)action withOptions:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration;

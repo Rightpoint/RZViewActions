@@ -63,6 +63,11 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
 @interface RZViewAction : NSObject
 
 /**
+ *  The duration of the action.
+ */
+@property (assign, nonatomic, readonly) NSTimeInterval duration;
+
+/**
  *  Returns a new action with the given duration. 
  *  The action block is used as a UIView animation block, and therefore must not be nil.
  *  If the duration is 0, the action block will be executed immediately without animation.

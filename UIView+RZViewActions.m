@@ -35,7 +35,7 @@
 
 @property (copy, nonatomic) RZViewActionBlock block;
 @property (assign, nonatomic) UIViewAnimationOptions options;
-@property (assign, nonatomic) NSTimeInterval duration;
+@property (assign, nonatomic, readwrite) NSTimeInterval duration;
 
 - (void)_runWithCompletion:(RZViewActionCompletion)completion;
 
@@ -135,9 +135,14 @@
 - (void)_runWithCompletion:(RZViewActionCompletion)completion
 {
     if ( completion != nil ) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if ( self.duration > 0.0f ) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                completion(YES);
+            });
+        }
+        else {
             completion(YES);
-        });
+        }
     }
 }
 

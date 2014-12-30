@@ -8,7 +8,7 @@ It can be difficult and unwieldy to perform complex animations using `[UIView an
 ```
 RZViewAction *changeBg = [RZViewAction action:^{
         self.view.backgroundColor = [UIColor blueColor];
-} withDuration:1.0f];
+} withDuration:1.0];
 
 [UIView rz_runAction:changeBg withCompletion:^(BOOL finished) {
   NSLog(@"The view changed background color over 1 second");
@@ -21,13 +21,13 @@ Basic actions can be combined in sequences that run each action to completion be
 ```
 RZViewAction *rotate = [RZViewAction action:^{
         self.label.transform = CGAffineTransformMakeRotation(M_PI_2);
-} withOptions:UIViewAnimationOptionCurveEaseInOut duration:3.0f];
+} withOptions:UIViewAnimationOptionCurveEaseInOut duration:3.0];
     
-RZViewAction *wait = [RZViewAction waitForDuration:2.0f];
+RZViewAction *wait = [RZViewAction waitForDuration:2.0];
 
 RZViewAction *fade = [RZViewAction action:^{
   self.label.alpha = 0.5f;
-} withDuration:1.0f];
+} withDuration:1.0];
     
 RZViewAction *seq = [RZViewAction sequence:@[rotate, wait, fade]];
 

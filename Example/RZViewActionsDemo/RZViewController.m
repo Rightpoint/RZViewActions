@@ -60,8 +60,8 @@
     
     RZViewAction *wait = [RZViewAction waitForDuration:0.7];
     
-    RZViewAction *pulse = [RZViewAction sequence:@[scaleUp, scaleDown, wait]];
-    RZViewAction *seq = [RZViewAction sequence:@[pulse, pulse, pulse]];
+    RZViewAction *pulse = [RZViewAction sequence:@[scaleUp, scaleDown]];
+    RZViewAction *seq = [RZViewAction sequence:@[pulse, wait, pulse, wait, pulse]];
     
     return seq;
 }

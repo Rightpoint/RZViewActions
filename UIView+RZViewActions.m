@@ -97,7 +97,7 @@
 
 + (instancetype)waitForDuration:(NSTimeInterval)duration
 {
-    NSAssert(duration >= 0.0f, @"%@ wait duration must be non-negative.", NSStringFromClass([RZViewAction class]));
+    NSAssert(duration >= 0.0, @"%@ wait duration must be non-negative.", NSStringFromClass([RZViewAction class]));
     
     RZViewAction *waitAction = [[RZViewWaitAction alloc] init];
     waitAction.duration = duration;
@@ -123,7 +123,7 @@
 
 - (void)_runWithCompletion:(RZViewActionCompletion)completion
 {
-    [UIView animateWithDuration:self.duration delay:0.0f options:self.options animations:self.block completion:completion];
+    [UIView animateWithDuration:self.duration delay:0.0 options:self.options animations:self.block completion:completion];
 }
 
 @end
@@ -135,7 +135,7 @@
 - (void)_runWithCompletion:(RZViewActionCompletion)completion
 {
     if ( completion != nil ) {
-        if ( self.duration > 0.0f ) {
+        if ( self.duration > 0.0 ) {
             [self performSelector:@selector(_finishedWithCompletion:) withObject:completion afterDelay:self.duration inModes:@[NSDefaultRunLoopMode, NSRunLoopCommonModes]];
         }
         else {

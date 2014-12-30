@@ -56,9 +56,9 @@
     
     RZViewAction *scaleDown = [RZViewAction action:^{
         self.titleLabel.transform = CGAffineTransformIdentity;
-    } withDuration:0.15f];
+    } withDuration:0.15];
     
-    RZViewAction *wait = [RZViewAction waitForDuration:0.7f];
+    RZViewAction *wait = [RZViewAction waitForDuration:0.7];
     
     RZViewAction *pulse = [RZViewAction sequence:@[scaleUp, scaleDown, wait]];
     RZViewAction *seq = [RZViewAction sequence:@[pulse, pulse, pulse]];
@@ -71,7 +71,7 @@
     NSMutableArray *wordAnimations = [NSMutableArray array];
     
     [self.copyrightLetters enumerateObjectsUsingBlock:^(UILabel *letter, NSUInteger idx, BOOL *stop) {
-        RZViewAction *animation = [self jumpAnimationForView:letter afterDelay:(0.025f * idx)];
+        RZViewAction *animation = [self jumpAnimationForView:letter afterDelay:(0.025 * idx)];
         [wordAnimations addObject:animation];
     }];
     
@@ -86,11 +86,11 @@
     
     RZViewAction *up = [RZViewAction action:^{
         view.transform = CGAffineTransformTranslate(view.transform, 0.0f, -jumpHeight);
-    } withOptions:UIViewAnimationOptionCurveEaseIn duration:0.3f];
+    } withOptions:UIViewAnimationOptionCurveEaseIn duration:0.3];
     
     RZViewAction *down = [RZViewAction action:^{
         view.transform = CGAffineTransformTranslate(view.transform, 0.0f, jumpHeight);
-    } withOptions:UIViewAnimationOptionCurveEaseOut duration:0.3f];
+    } withOptions:UIViewAnimationOptionCurveEaseOut duration:0.3];
     
     RZViewAction *seq = [RZViewAction sequence:@[wait, up, down]];
     
@@ -104,7 +104,7 @@
     [self.copyrightLetters enumerateObjectsUsingBlock:^(UILabel *letter, NSUInteger idx, BOOL *stop) {
         RZViewAction *fade = [RZViewAction action:^{
             letter.alpha = 0.5f;
-        } withDuration:0.01f];
+        } withDuration:0.01];
         
         [actions addObject:fade];
     }];
@@ -112,7 +112,7 @@
     [self.copyrightLetters enumerateObjectsUsingBlock:^(UILabel *letter, NSUInteger idx, BOOL *stop) {
         RZViewAction *unfade = [RZViewAction action:^{
             letter.alpha = 1.0f;
-        } withDuration:0.01f];
+        } withDuration:0.01];
         
         [actions addObject:unfade];
     }];
@@ -133,7 +133,7 @@
         
         RZViewAction *yTrans = [RZViewAction action:^{
             letter.center = CGPointMake(letter.center.x, letter.center.y + trans);
-        } withOptions:UIViewAnimationOptionCurveEaseIn duration:0.5f];
+        } withOptions:UIViewAnimationOptionCurveEaseIn duration:0.5];
         
         [spread addObject:yTrans];
         
@@ -144,7 +144,7 @@
         RZViewAction *circleTrans = [RZViewAction action:^{
             letter.transform = CGAffineTransformMakeRotation(angle - M_PI_2);
             letter.center = CGPointMake(CGRectGetMidX(self.view.bounds) - x, CGRectGetMidY(self.view.bounds) - y);
-        } withOptions:UIViewAnimationOptionCurveEaseOut duration:0.7f];
+        } withOptions:UIViewAnimationOptionCurveEaseOut duration:0.7];
         
         [circle addObject:circleTrans];
     }];

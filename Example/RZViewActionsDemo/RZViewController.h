@@ -11,11 +11,10 @@
 
 @interface RZViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *testLabel;
-@property (weak, nonatomic) IBOutlet UIView *testView;
-@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *testViewLeftConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *copyrightLabel;
 
 @end
 

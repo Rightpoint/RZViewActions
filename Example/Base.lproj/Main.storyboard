@@ -18,12 +18,15 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RZViewActions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNK-1O-wwR">
-                                <rect key="frame" x="20" y="186" width="560" height="29"/>
+                                <rect key="frame" x="20" y="136" width="560" height="29"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                </variation>
                             </label>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Copyright (c) 2014 Raizlabs. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="dHW-PH-qvN">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Copyright (c) 2014 Raizlabs. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="dHW-PH-qvN">
                                 <rect key="frame" x="120" y="560" width="363" height="21"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -34,22 +37,31 @@
                                 <rect key="frame" x="281" y="281" width="37" height="37"/>
                                 <color key="color" red="0.76862745099999996" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="tap to animate..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXy-AJ-vOG">
+                                <rect key="frame" x="242" y="291" width="119" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="dHW-PH-qvN" secondAttribute="bottom" constant="20" id="7Yi-bl-y6p"/>
                             <constraint firstItem="KNK-1O-wwR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="94R-KY-HyE"/>
+                            <constraint firstAttribute="centerY" secondItem="LXy-AJ-vOG" secondAttribute="centerY" constant="0.5" id="NUk-vv-t1A"/>
                             <constraint firstAttribute="centerX" secondItem="3b3-AA-J1Q" secondAttribute="centerX" id="Nbd-8w-lgt"/>
                             <constraint firstAttribute="centerY" secondItem="3b3-AA-J1Q" secondAttribute="centerY" id="TZH-9Q-CD9"/>
-                            <constraint firstItem="KNK-1O-wwR" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="bottom" multiplier="1/3" id="XPs-sA-FRf"/>
+                            <constraint firstItem="KNK-1O-wwR" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="bottom" multiplier="1/4" id="XPs-sA-FRf"/>
                             <constraint firstAttribute="centerX" secondItem="dHW-PH-qvN" secondAttribute="centerX" id="a8E-hZ-PhB"/>
                             <constraint firstItem="dHW-PH-qvN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="ic1-6e-J5H"/>
                             <constraint firstAttribute="centerX" secondItem="KNK-1O-wwR" secondAttribute="centerX" id="u4n-eV-lqz"/>
+                            <constraint firstAttribute="centerX" secondItem="LXy-AJ-vOG" secondAttribute="centerX" id="wTP-we-SkG"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="copyrightLabel" destination="dHW-PH-qvN" id="2Ym-ea-anH"/>
                         <outlet property="spinner" destination="3b3-AA-J1Q" id="wis-Fn-Uzb"/>
+                        <outlet property="tapLabel" destination="LXy-AJ-vOG" id="43q-Ey-fGX"/>
                         <outlet property="titleLabel" destination="KNK-1O-wwR" id="1Za-cs-hBB"/>
                     </connections>
                 </viewController>

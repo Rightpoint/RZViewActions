@@ -11,7 +11,8 @@
 
 @interface RZViewController ()
 
-@property (copy, nonatomic) NSArray *letters;
+@property (copy, nonatomic) NSArray *tapLetters;
+@property (copy, nonatomic) NSArray *copyrightLetters;
 
 @end
 
@@ -21,17 +22,23 @@
 {
     [super viewDidAppear:animated];
     
-    self.letters = [self labelArrayFromLabel:self.copyrightLabel];
+    self.tapLetters = [self decomposeLabel:self.tapLabel];
+    self.copyrightLetters = [self decomposeLabel:self.copyrightLabel];
 }
 
 #pragma mark - touch handling
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if ( self.tapLetters != nil ) {
+        [UIView rz_runAction:[self tapLabelAnimation]];
+        self.tapLetters = nil;
+    }
+    
     if ( !self.spinner.isAnimating ) {
         [self.spinner startAnimating];
         
-        RZViewAction *action = [RZViewAction group:@[[self titleAnimation], [self waveAnimation], [self colorAnimation]]];
+        RZViewAction *action = [RZViewAction group:@[[self titleAnimation], [self waveAnimation], [self fadeAnimation]]];
         
         [UIView rz_runAction:action withCompletion:^(BOOL finished) {
             [self.spinner stopAnimating];
@@ -43,36 +50,30 @@
 
 - (RZViewAction *)titleAnimation
 {
-    RZViewAction *rotate1 = [RZViewAction action:^{
-        self.titleLabel.transform = CGAffineTransformRotate(self.titleLabel.transform, M_PI_4);
-    } withDuration:1.0f];
+    RZViewAction *scaleUp = [RZViewAction action:^{
+        self.titleLabel.transform = CGAffineTransformScale(self.titleLabel.transform, 1.3f, 1.3f);
+    } withOptions:UIViewAnimationOptionCurveEaseOut duration:0.2f];
     
-    RZViewAction *rotate2 = [RZViewAction action:^{
-        self.titleLabel.transform = CGAffineTransformRotate(self.titleLabel.transform, -M_PI_2);
-    } withDuration:1.0f];
+    RZViewAction *scaleDown = [RZViewAction action:^{
+        self.titleLabel.transform = CGAffineTransformIdentity;
+    } withDuration:0.15f];
     
-    RZViewAction *scale = [RZViewAction action:^{
-        self.titleLabel.transform = CGAffineTransformScale(self.titleLabel.transform, 1.25f, 1.25f);
-    } withDuration:2.0f];
+    RZViewAction *wait = [RZViewAction waitForDuration:0.7f];
     
-    RZViewAction *seq = [RZViewAction sequence:@[rotate1, rotate2, rotate1]];
-    RZViewAction *group = [RZViewAction group:@[seq, scale]];
+    RZViewAction *pulse = [RZViewAction sequence:@[scaleUp, scaleDown, wait]];
+    RZViewAction *seq = [RZViewAction sequence:@[pulse, pulse, pulse]];
     
-    return group;
+    return seq;
 }
 
 - (RZViewAction *)waveAnimation
 {
     NSMutableArray *wordAnimations = [NSMutableArray array];
     
-    NSTimeInterval delay = 0.0f;
-    
-    for ( UILabel *letter in self.letters ) {
-        RZViewAction *animation = [self jumpAnimationForView:letter afterDelay:delay];
+    [self.copyrightLetters enumerateObjectsUsingBlock:^(UILabel *letter, NSUInteger idx, BOOL *stop) {
+        RZViewAction *animation = [self jumpAnimationForView:letter afterDelay:(0.025f * idx)];
         [wordAnimations addObject:animation];
-        
-        delay += 0.025f;
-    }
+    }];
     
     return [RZViewAction group:wordAnimations];
 }
@@ -96,32 +97,67 @@
     return seq;
 }
 
-- (RZViewAction *)colorAnimation
+- (RZViewAction *)fadeAnimation
 {
     NSMutableArray *actions = [NSMutableArray array];
 
-    [self.letters enumerateObjectsUsingBlock:^(UILabel *letter, NSUInteger idx, BOOL *stop) {
-        RZViewAction *color = [RZViewAction action:^{
+    [self.copyrightLetters enumerateObjectsUsingBlock:^(UILabel *letter, NSUInteger idx, BOOL *stop) {
+        RZViewAction *fade = [RZViewAction action:^{
             letter.alpha = 0.5f;
         } withDuration:0.01f];
         
-        [actions addObject:color];
+        [actions addObject:fade];
     }];
     
-    [self.letters enumerateObjectsWithOptions:kNilOptions usingBlock:^(UILabel *letter, NSUInteger idx, BOOL *stop) {
-        RZViewAction *uncolor = [RZViewAction action:^{
+    [self.copyrightLetters enumerateObjectsUsingBlock:^(UILabel *letter, NSUInteger idx, BOOL *stop) {
+        RZViewAction *unfade = [RZViewAction action:^{
             letter.alpha = 1.0f;
         } withDuration:0.01f];
         
-        [actions addObject:uncolor];
+        [actions addObject:unfade];
     }];
     
     return [RZViewAction sequence:actions];
 }
 
+- (RZViewAction *)tapLabelAnimation
+{
+    NSMutableArray *spread = [NSMutableArray array];
+    NSMutableArray *circle = [NSMutableArray array];
+    
+    CGFloat radius = 3.0f * self.tapLetters.count;
+    CGFloat angleIncrement = 2.0f * M_PI / self.tapLetters.count;
+    
+    [self.tapLetters enumerateObjectsUsingBlock:^(UILabel *letter, NSUInteger idx, BOOL *stop) {
+        CGFloat trans = (idx % 2 == 0) ? -15.0f : 15.0f;
+        
+        RZViewAction *yTrans = [RZViewAction action:^{
+            letter.center = CGPointMake(letter.center.x, letter.center.y + trans);
+        } withOptions:UIViewAnimationOptionCurveEaseIn duration:0.5f];
+        
+        [spread addObject:yTrans];
+        
+        CGFloat angle = idx * angleIncrement;
+        CGFloat x = radius * cosf(angle);
+        CGFloat y = radius * sinf(angle);
+
+        RZViewAction *circleTrans = [RZViewAction action:^{
+            letter.transform = CGAffineTransformMakeRotation(angle - M_PI_2);
+            letter.center = CGPointMake(CGRectGetMidX(self.view.bounds) - x, CGRectGetMidY(self.view.bounds) - y);
+        } withOptions:UIViewAnimationOptionCurveEaseOut duration:0.7f];
+        
+        [circle addObject:circleTrans];
+    }];
+    
+    RZViewAction *spreadGroup = [RZViewAction group:spread];
+    RZViewAction *circleGroup = [RZViewAction group:circle];
+    
+    return [RZViewAction sequence:@[spreadGroup, circleGroup]];
+}
+
 #pragma mark - misc helpers
 
-- (NSArray *)labelArrayFromLabel:(UILabel *)label
+- (NSArray *)decomposeLabel:(UILabel *)label
 {
     NSCharacterSet *whitespace = [NSCharacterSet whitespaceCharacterSet];
     NSMutableArray *wordLabels = [NSMutableArray array];
@@ -146,6 +182,8 @@
         
         letterX += size.width;
     }
+    
+    [label removeFromSuperview];
     
     return wordLabels;
 }

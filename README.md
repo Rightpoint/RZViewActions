@@ -1,6 +1,9 @@
 RZViewActions
 =============
-
+<p align="center">
+<img src="http://cl.ly/image/0y0n2C1B1M1X/rzva.gif"
+alt="RZViewActions">
+</p>
 ## Overview
 It can be difficult and unwieldy to perform complex animations using `[UIView animateWithDuration...]`, especially when trying to manage several concurrent animations and their completion blocks. Core Animation offers some help with `CAAnimationGroup`, but realistically using Core Animation for such tasks can be wordy and just as cumbersome.
 `RZViewActions` offers a solution.

@@ -1,5 +1,7 @@
 RZViewActions
 =============
+
+## Overview
 It can be difficult and unwieldy to perform complex animations using `[UIView animateWithDuration...]`, especially when trying to manage several concurrent animations and their completion blocks. Core Animation offers some help with `CAAnimationGroup`, but realistically using Core Animation for such tasks can be wordy and just as cumbersome.
 `RZViewActions` offers a solution.
 
@@ -14,7 +16,7 @@ RZViewAction *changeBg = [RZViewAction action:^{
   NSLog(@"The view changed background color over 1 second");
 }];
 ```
-This simple usage may not be particularly useful on its own, but is the fundamental building block for more complex actions.
+This simple usage may not be particularly useful on its own, but is the fundamental building block for more complex actions. Note that actions can be stored and reused multiple times. If you do store an action, make sure to avoid retain cycles by using weak references to self where necessary within the animation block.
 
 ## Sequences
 Basic actions can be combined in sequences that run each action to completion before running the next in the sequence:

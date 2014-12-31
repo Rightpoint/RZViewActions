@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D422156B1A545CAD00158E51 /* UIView+RZViewActions.m in Sources */ = {isa = PBXBuildFile; fileRef = D422156A1A545CAD00158E51 /* UIView+RZViewActions.m */; };
 		D4ADEBA51A3B41E800F71709 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ADEBA41A3B41E800F71709 /* main.m */; };
 		D4ADEBA81A3B41E800F71709 /* RZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ADEBA71A3B41E800F71709 /* RZAppDelegate.m */; };
 		D4ADEBCA1A3B427400F71709 /* RZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ADEBC91A3B427400F71709 /* RZViewController.m */; };
 		D4ADEBCF1A3B429000F71709 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4ADEBCB1A3B429000F71709 /* LaunchScreen.xib */; };
 		D4ADEBD01A3B429000F71709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4ADEBCD1A3B429000F71709 /* Main.storyboard */; };
-		D4ADEBD31A3B42CD00F71709 /* UIView+RZViewActions.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ADEBD21A3B42CD00F71709 /* UIView+RZViewActions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D42215691A545CAD00158E51 /* UIView+RZViewActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+RZViewActions.h"; path = "../RZViewActions/UIView+RZViewActions.h"; sourceTree = "<group>"; };
+		D422156A1A545CAD00158E51 /* UIView+RZViewActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+RZViewActions.m"; path = "../RZViewActions/UIView+RZViewActions.m"; sourceTree = "<group>"; };
 		D4ADEB9F1A3B41E800F71709 /* RZViewActionsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RZViewActionsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4ADEBA31A3B41E800F71709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4ADEBA41A3B41E800F71709 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -25,8 +27,6 @@
 		D4ADEBC91A3B427400F71709 /* RZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZViewController.m; sourceTree = "<group>"; };
 		D4ADEBCC1A3B429000F71709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
 		D4ADEBCE1A3B429000F71709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
-		D4ADEBD11A3B42CD00F71709 /* UIView+RZViewActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+RZViewActions.h"; path = "../UIView+RZViewActions.h"; sourceTree = "<group>"; };
-		D4ADEBD21A3B42CD00F71709 /* UIView+RZViewActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+RZViewActions.m"; path = "../UIView+RZViewActions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,10 +40,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D42215651A545C7600158E51 /* RZViewActions */ = {
+			isa = PBXGroup;
+			children = (
+				D42215691A545CAD00158E51 /* UIView+RZViewActions.h */,
+				D422156A1A545CAD00158E51 /* UIView+RZViewActions.m */,
+			);
+			name = RZViewActions;
+			sourceTree = "<group>";
+		};
 		D4ADEB961A3B41E800F71709 = {
 			isa = PBXGroup;
 			children = (
-				D4ADEBD41A3B42D100F71709 /* RZViewActions */,
+				D42215651A545C7600158E51 /* RZViewActions */,
 				D4ADEBA11A3B41E800F71709 /* RZViewActionsDemo */,
 				D4ADEBA01A3B41E800F71709 /* Products */,
 			);
@@ -78,15 +87,6 @@
 				D4ADEBA41A3B41E800F71709 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D4ADEBD41A3B42D100F71709 /* RZViewActions */ = {
-			isa = PBXGroup;
-			children = (
-				D4ADEBD11A3B42CD00F71709 /* UIView+RZViewActions.h */,
-				D4ADEBD21A3B42CD00F71709 /* UIView+RZViewActions.m */,
-			);
-			name = RZViewActions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,7 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4ADEBCA1A3B427400F71709 /* RZViewController.m in Sources */,
-				D4ADEBD31A3B42CD00F71709 /* UIView+RZViewActions.m in Sources */,
+				D422156B1A545CAD00158E51 /* UIView+RZViewActions.m in Sources */,
 				D4ADEBA81A3B41E800F71709 /* RZAppDelegate.m in Sources */,
 				D4ADEBA51A3B41E800F71709 /* main.m in Sources */,
 			);

@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.author           = { "Rob Visentin" => "rob.visentin@raizlabs.com" }
   s.source           = { :git => "https://github.com/Raizlabs/RZViewActions.git", :tag => s.version.to_s }
 
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '5.0'
   s.requires_arc = true
 
   s.frameworks = 'UIKit'

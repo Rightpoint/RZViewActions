@@ -81,16 +81,17 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
  *  Returns a new action with the given animation options and duration. 
  *  The action block is used as a UIView animation block, and therefore must not be nil.
  *
- *  @note The action block is copied, so make sure to use weak references to objects that may retain ownnership of the action.
+ *  @note The action block is copied, so make sure to use weak references to objects that may retain ownership of the action.
  *  @see UIView(UIViewAnimationWithBlocks)
  */
 + (instancetype)action:(RZViewActionBlock)action withOptions:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration;
 
 /**
- *  Returns a new springy action.
+ *  Returns a new springy action. The dampingRatio and velocity are passed as parameters to the standard UIView
+ *  animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:... method.
  *  The action block is used as a UIView animation block, and therefore must not be nil.
  *
- *  @note The action block is copied, so make sure to use weak references to objects that may retain ownnership of the action.
+ *  @note The action block is copied, so make sure to use weak references to objects that may retain ownership of the action.
  *  @see UIView(UIViewAnimationWithBlocks)
  */
 + (instancetype)springAction:(RZViewActionBlock)action withDamping:(CGFloat)dampingRatio initialVelocity:(CGFloat)velocity options:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration;

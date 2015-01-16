@@ -37,7 +37,7 @@
 @property (assign, nonatomic) UIViewAnimationOptions options;
 @property (assign, nonatomic, readwrite) NSTimeInterval duration;
 
-- (void)_runWithCompletion:(RZViewActionCompletion)completion;
+- (void)rz_runWithCompletion:(RZViewActionCompletion)completion;
 
 @end
 
@@ -68,7 +68,7 @@
 
 + (void)rz_runAction:(RZViewAction *)action withCompletion:(RZViewActionCompletion)completion
 {
-    [action _runWithCompletion:completion];
+    [action rz_runWithCompletion:completion];
 }
 
 @end
@@ -135,7 +135,7 @@
     return group;
 }
 
-- (void)_runWithCompletion:(RZViewActionCompletion)completion
+- (void)rz_runWithCompletion:(RZViewActionCompletion)completion
 {
     [UIView animateWithDuration:self.duration delay:0.0 options:self.options animations:self.block completion:completion];
 }
@@ -146,7 +146,7 @@
 
 @implementation RZViewSpringAction
 
-- (void)_runWithCompletion:(RZViewActionCompletion)completion
+- (void)rz_runWithCompletion:(RZViewActionCompletion)completion
 {
     [UIView animateWithDuration:self.duration delay:0.0 usingSpringWithDamping:self.damping initialSpringVelocity:self.initialVelocity options:self.options animations:self.block completion:completion];
 }
@@ -157,7 +157,7 @@
 
 @implementation RZViewWaitAction
 
-- (void)_runWithCompletion:(RZViewActionCompletion)completion
+- (void)rz_runWithCompletion:(RZViewActionCompletion)completion
 {
     if ( completion != nil ) {
         if ( self.duration > 0.0 ) {
@@ -187,16 +187,16 @@
     self.duration = [[actions valueForKeyPath:@"@sum.duration"] doubleValue];
 }
 
-- (void)_runWithCompletion:(RZViewActionCompletion)completion
+- (void)rz_runWithCompletion:(RZViewActionCompletion)completion
 {
-    [self _runActionAtIndex:0 withCompletion:completion];
+    [self rz_runActionAtIndex:0 withCompletion:completion];
 }
 
-- (void)_runActionAtIndex:(NSUInteger)index withCompletion:(RZViewActionCompletion)completion
+- (void)rz_runActionAtIndex:(NSUInteger)index withCompletion:(RZViewActionCompletion)completion
 {
     if ( index < [self.actions count] ) {
-        [self.actions[index] _runWithCompletion:^(BOOL finished) {
-            [self _runActionAtIndex:index+1 withCompletion:completion];
+        [self.actions[index] rz_runWithCompletion:^(BOOL finished) {
+            [self rz_runActionAtIndex:index+1 withCompletion:completion];
         }];
     }
     else if ( completion != nil ) {
@@ -217,14 +217,14 @@
     self.duration = [[actions valueForKeyPath:@"@max.duration"] doubleValue];
 }
 
-- (void)_runWithCompletion:(RZViewActionCompletion)completion
+- (void)rz_runWithCompletion:(RZViewActionCompletion)completion
 {
     dispatch_group_t actionGroup = dispatch_group_create();
     
     [self.actions enumerateObjectsUsingBlock:^(RZViewAction *action, NSUInteger idx, BOOL *stop) {
         dispatch_group_enter(actionGroup);
         
-        [action _runWithCompletion:^(BOOL finished) {
+        [action rz_runWithCompletion:^(BOOL finished) {
             dispatch_group_leave(actionGroup);
         }];
     }];

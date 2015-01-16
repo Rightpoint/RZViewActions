@@ -63,7 +63,7 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
 @interface RZViewAction : NSObject
 
 /**
- *  The duration of the action.
+ *  The duration of the action in seconds.
  */
 @property (assign, nonatomic, readonly) NSTimeInterval duration;
 
@@ -75,7 +75,7 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
  *  @note Unlike UIView animation blocks, the action block is copied, so be wary of retain cycles.
  *  @see UIView(UIViewAnimationWithBlocks)
  */
-+ (instancetype)action:(RZViewActionBlock)action withDuration:(NSTimeInterval)duration;
++ (RZViewAction *)action:(RZViewActionBlock)action withDuration:(NSTimeInterval)duration;
 
 /**
  *  Returns a new action with the given animation options and duration. 
@@ -84,7 +84,7 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
  *  @note The action block is copied, so make sure to use weak references to objects that may retain ownership of the action.
  *  @see UIView(UIViewAnimationWithBlocks)
  */
-+ (instancetype)action:(RZViewActionBlock)action withOptions:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration;
++ (RZViewAction *)action:(RZViewActionBlock)action withOptions:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration;
 
 /**
  *  Returns a new springy action. The dampingRatio and velocity are passed as parameters to the standard UIView
@@ -94,12 +94,12 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
  *  @note The action block is copied, so make sure to use weak references to objects that may retain ownership of the action.
  *  @see UIView(UIViewAnimationWithBlocks)
  */
-+ (instancetype)springAction:(RZViewActionBlock)action withDamping:(CGFloat)dampingRatio initialVelocity:(CGFloat)velocity options:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration;
++ (RZViewAction *)springAction:(RZViewActionBlock)action withDamping:(CGFloat)dampingRatio initialVelocity:(CGFloat)velocity options:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration;
 
 /**
  *  Returns a new action that waits for a given duration. Useful in RZViewAction sequences.
  */
-+ (instancetype)waitForDuration:(NSTimeInterval)duration;
++ (RZViewAction *)waitForDuration:(NSTimeInterval)duration;
 
 /**
  *  Returns a new sequence action. Sequence actions behave like a queue in that actions are executed serially.
@@ -110,7 +110,7 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
  *  @note Each element in the actionGroup array may be any type of RZViewAction. 
  *  This means that you can comebine sequence and group actions in any way you see fit.
  */
-+ (instancetype)sequence:(NSArray *)actionSequence;
++ (RZViewAction *)sequence:(NSArray *)actionSequence;
 
 /**
  *  Returns a new group action. Group actions run all actions in the group together, and do not wait for an action to finish
@@ -122,6 +122,6 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
  *  @note Each element in the actionGroup array may be any type of RZViewAction. 
  *  This means that you can comebine group and sequence actions in any way you see fit.
  */
-+ (instancetype)group:(NSArray *)actionGroup;
++ (RZViewAction *)group:(NSArray *)actionGroup;
 
 @end

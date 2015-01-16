@@ -87,6 +87,15 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
 + (instancetype)action:(RZViewActionBlock)action withOptions:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration;
 
 /**
+ *  Returns a new springy action.
+ *  The action block is used as a UIView animation block, and therefore must not be nil.
+ *
+ *  @note The action block is copied, so make sure to use weak references to objects that may retain ownnership of the action.
+ *  @see UIView(UIViewAnimationWithBlocks)
+ */
++ (instancetype)springAction:(RZViewActionBlock)action withDamping:(CGFloat)dampingRatio initialVelocity:(CGFloat)velocity options:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration;
+
+/**
  *  Returns a new action that waits for a given duration. Useful in RZViewAction sequences.
  */
 + (instancetype)waitForDuration:(NSTimeInterval)duration;

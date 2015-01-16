@@ -48,6 +48,11 @@
 @property (copy, nonatomic) NSArray *actions;
 @end
 
+@interface RZViewSpringAction : RZViewAction
+@property (assign, nonatomic) CGFloat damping;
+@property (assign, nonatomic) CGFloat initialVelocity;
+@end
+
 @interface RZViewGroupAction : RZViewAction
 @property (copy, nonatomic) NSArray *actions;
 @end
@@ -74,6 +79,8 @@
 
 - (instancetype)initWithBlock:(RZViewActionBlock)block options:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration
 {
+    NSParameterAssert(block);
+    
     self = [super init];
     if ( self ) {
         _block = block;
@@ -90,9 +97,16 @@
 
 + (instancetype)action:(RZViewActionBlock)action withOptions:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration
 {
-    NSParameterAssert(action);
+    return [[RZViewAction alloc] initWithBlock:action options:options duration:duration];
+}
+
++ (instancetype)springAction:(RZViewActionBlock)action withDamping:(CGFloat)dampingRatio initialVelocity:(CGFloat)velocity options:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration
+{
+    RZViewSpringAction *springAction = [[RZViewSpringAction alloc] initWithBlock:action options:options duration:duration];
+    springAction.damping = dampingRatio;
+    springAction.initialVelocity = velocity;
     
-    return [[self alloc] initWithBlock:action options:options duration:duration];
+    return springAction;
 }
 
 + (instancetype)waitForDuration:(NSTimeInterval)duration
@@ -124,6 +138,17 @@
 - (void)_runWithCompletion:(RZViewActionCompletion)completion
 {
     [UIView animateWithDuration:self.duration delay:0.0 options:self.options animations:self.block completion:completion];
+}
+
+@end
+
+#pragma mark - RZViewSpringAction
+
+@implementation RZViewSpringAction
+
+- (void)_runWithCompletion:(RZViewActionCompletion)completion
+{
+    [UIView animateWithDuration:self.duration delay:0.0 usingSpringWithDamping:self.damping initialSpringVelocity:self.initialVelocity options:self.options animations:self.block completion:completion];
 }
 
 @end

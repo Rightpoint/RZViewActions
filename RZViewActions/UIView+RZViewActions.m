@@ -37,7 +37,7 @@
 @property (assign, nonatomic) UIViewAnimationOptions options;
 @property (assign, nonatomic, readwrite) NSTimeInterval duration;
 
-- (void)_runWithCompletion:(RZViewActionCompletion)completion;
+- (void)rz_runWithCompletion:(RZViewActionCompletion)completion;
 
 @end
 
@@ -46,6 +46,11 @@
 
 @interface RZViewSequenceAction : RZViewAction
 @property (copy, nonatomic) NSArray *actions;
+@end
+
+@interface RZViewSpringAction : RZViewAction
+@property (assign, nonatomic) CGFloat damping;
+@property (assign, nonatomic) CGFloat initialVelocity;
 @end
 
 @interface RZViewGroupAction : RZViewAction
@@ -63,7 +68,7 @@
 
 + (void)rz_runAction:(RZViewAction *)action withCompletion:(RZViewActionCompletion)completion
 {
-    [action _runWithCompletion:completion];
+    [action rz_runWithCompletion:completion];
 }
 
 @end
@@ -72,30 +77,28 @@
 
 @implementation RZViewAction
 
-- (instancetype)initWithBlock:(RZViewActionBlock)block options:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration
-{
-    self = [super init];
-    if ( self ) {
-        _block = block;
-        _options = options;
-        _duration = duration;
-    }
-    return self;
-}
+#pragma mark - public methods
 
-+ (instancetype)action:(RZViewActionBlock)action withDuration:(NSTimeInterval)duration
++ (RZViewAction *)action:(RZViewActionBlock)action withDuration:(NSTimeInterval)duration
 {
     return [self action:action withOptions:kNilOptions duration:duration];
 }
 
-+ (instancetype)action:(RZViewActionBlock)action withOptions:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration
++ (RZViewAction *)action:(RZViewActionBlock)action withOptions:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration
 {
-    NSParameterAssert(action);
-    
-    return [[self alloc] initWithBlock:action options:options duration:duration];
+    return [[RZViewAction alloc] initWithBlock:action options:options duration:duration];
 }
 
-+ (instancetype)waitForDuration:(NSTimeInterval)duration
++ (RZViewAction *)springAction:(RZViewActionBlock)action withDamping:(CGFloat)dampingRatio initialVelocity:(CGFloat)velocity options:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration
+{
+    RZViewSpringAction *springAction = [[RZViewSpringAction alloc] initWithBlock:action options:options duration:duration];
+    springAction.damping = dampingRatio;
+    springAction.initialVelocity = velocity;
+    
+    return springAction;
+}
+
++ (RZViewAction *)waitForDuration:(NSTimeInterval)duration
 {
     NSAssert(duration >= 0.0, @"%@ wait duration must be non-negative.", NSStringFromClass([RZViewAction class]));
     
@@ -105,7 +108,7 @@
     return waitAction;
 }
 
-+ (instancetype)sequence:(NSArray *)actionSequence
++ (RZViewAction *)sequence:(NSArray *)actionSequence
 {
     RZViewSequenceAction *sequence = [[RZViewSequenceAction alloc] init];
     sequence.actions = actionSequence;
@@ -113,7 +116,7 @@
     return sequence;
 }
 
-+ (instancetype)group:(NSArray *)actionGroup
++ (RZViewAction *)group:(NSArray *)actionGroup
 {
     RZViewGroupAction *group = [[RZViewGroupAction alloc] init];
     group.actions = actionGroup;
@@ -121,9 +124,35 @@
     return group;
 }
 
-- (void)_runWithCompletion:(RZViewActionCompletion)completion
+#pragma mark - private methods
+
+- (instancetype)initWithBlock:(RZViewActionBlock)block options:(UIViewAnimationOptions)options duration:(NSTimeInterval)duration
+{
+    NSParameterAssert(block);
+    
+    self = [super init];
+    if ( self ) {
+        _block = block;
+        _options = options;
+        _duration = duration;
+    }
+    return self;
+}
+
+- (void)rz_runWithCompletion:(RZViewActionCompletion)completion
 {
     [UIView animateWithDuration:self.duration delay:0.0 options:self.options animations:self.block completion:completion];
+}
+
+@end
+
+#pragma mark - RZViewSpringAction
+
+@implementation RZViewSpringAction
+
+- (void)rz_runWithCompletion:(RZViewActionCompletion)completion
+{
+    [UIView animateWithDuration:self.duration delay:0.0 usingSpringWithDamping:self.damping initialSpringVelocity:self.initialVelocity options:self.options animations:self.block completion:completion];
 }
 
 @end
@@ -132,19 +161,19 @@
 
 @implementation RZViewWaitAction
 
-- (void)_runWithCompletion:(RZViewActionCompletion)completion
+- (void)rz_runWithCompletion:(RZViewActionCompletion)completion
 {
     if ( completion != nil ) {
         if ( self.duration > 0.0 ) {
-            [self performSelector:@selector(_finishedWithCompletion:) withObject:completion afterDelay:self.duration inModes:@[NSDefaultRunLoopMode, NSRunLoopCommonModes]];
+            [self performSelector:@selector(rz_finishedWithCompletion:) withObject:completion afterDelay:self.duration inModes:@[NSRunLoopCommonModes]];
         }
         else {
-            [self _finishedWithCompletion:completion];
+            [self rz_finishedWithCompletion:completion];
         }
     }
 }
 
-- (void)_finishedWithCompletion:(RZViewActionCompletion)completion
+- (void)rz_finishedWithCompletion:(RZViewActionCompletion)completion
 {
     completion(YES);
 }
@@ -162,16 +191,16 @@
     self.duration = [[actions valueForKeyPath:@"@sum.duration"] doubleValue];
 }
 
-- (void)_runWithCompletion:(RZViewActionCompletion)completion
+- (void)rz_runWithCompletion:(RZViewActionCompletion)completion
 {
-    [self _runActionAtIndex:0 withCompletion:completion];
+    [self rz_runActionAtIndex:0 withCompletion:completion];
 }
 
-- (void)_runActionAtIndex:(NSUInteger)index withCompletion:(RZViewActionCompletion)completion
+- (void)rz_runActionAtIndex:(NSUInteger)index withCompletion:(RZViewActionCompletion)completion
 {
     if ( index < [self.actions count] ) {
-        [self.actions[index] _runWithCompletion:^(BOOL finished) {
-            [self _runActionAtIndex:index+1 withCompletion:completion];
+        [self.actions[index] rz_runWithCompletion:^(BOOL finished) {
+            [self rz_runActionAtIndex:index+1 withCompletion:completion];
         }];
     }
     else if ( completion != nil ) {
@@ -192,14 +221,14 @@
     self.duration = [[actions valueForKeyPath:@"@max.duration"] doubleValue];
 }
 
-- (void)_runWithCompletion:(RZViewActionCompletion)completion
+- (void)rz_runWithCompletion:(RZViewActionCompletion)completion
 {
     dispatch_group_t actionGroup = dispatch_group_create();
     
     [self.actions enumerateObjectsUsingBlock:^(RZViewAction *action, NSUInteger idx, BOOL *stop) {
         dispatch_group_enter(actionGroup);
         
-        [action _runWithCompletion:^(BOOL finished) {
+        [action rz_runWithCompletion:^(BOOL finished) {
             dispatch_group_leave(actionGroup);
         }];
     }];

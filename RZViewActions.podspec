@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "RZViewActions"
-  s.version          = “0.2.0”
+  s.version          = "0.2.0"
   s.summary          = "Sequenced and grouped animations for UIView"
   s.description      = <<-DESC
                        A category on UIView that provides animation structure similar to SKAction from SpriteKit.
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.author           = { "Rob Visentin" => "rob.visentin@raizlabs.com" }
   s.source           = { :git => "https://github.com/Raizlabs/RZViewActions.git", :tag => s.version.to_s }
 
-  s.platform     = :ios, ‘4.0’
+  s.platform     = :ios, '4.0'
   s.requires_arc = true
 
   s.frameworks = 'UIKit'

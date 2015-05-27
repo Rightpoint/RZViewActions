@@ -24,7 +24,7 @@ Or download the zip form github and run it manually.
 
 ## Basic Usage
 RZViewActions provides additional structure for UIView animations, and allows you to define animations semantically:
-```
+```obj-c
 RZViewAction *changeBg = [RZViewAction action:^{
         self.view.backgroundColor = [UIColor blueColor];
 } withDuration:1.0];
@@ -37,7 +37,7 @@ This simple usage may not be particularly useful on its own, but is the fundamen
 
 ## Sequences
 Basic actions can be combined in sequences that run each action to completion before running the next in the sequence:
-```
+``` obj-c
 RZViewAction *rotate = [RZViewAction action:^{
         self.label.transform = CGAffineTransformMakeRotation(M_PI_2);
 } withOptions:UIViewAnimationOptionCurveEaseInOut duration:3.0];
@@ -58,7 +58,7 @@ It's immediately clear what the intent of the above animation is, because each a
 
 ## Groups
 RZViewActions also provides group animations, which performs several actions at once:
-```
+``` obj-c
 RZViewAction *group = [RZViewAction group:@[rotate, fade]];
 
 [UIView rz_runAction:group withCompletion:^(BOOL finished) {

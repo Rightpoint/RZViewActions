@@ -74,4 +74,4 @@ Sequences can be added to groups and groups can be added to sequences, which mea
 Rob Visentin, rob.visentin@raizlabs.com
 
 ## License
-RZDataBinding is available under the MIT license. See the LICENSE file for more info.
+RZViewActions is available under the MIT license. See the LICENSE file for more info.

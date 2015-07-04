@@ -34,6 +34,7 @@
 #endif
 
 @class RZViewAction;
+@class RZViewActionSequence;
 
 typedef void (^RZViewActionBlock)();
 typedef void (^RZViewActionCompletion)(BOOL finished);
@@ -106,6 +107,18 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
 + (RZViewAction *)waitForDuration:(NSTimeInterval)duration;
 
 /**
+ *  Returns a new group action. Group actions run all actions in the group together, and do not wait for an action to finish
+ *  before executing the next one.
+ *  Completion blocks for group actions are not invoked until after all actions in the group have finished.
+ *
+ *  @param actionSequence An array of RZViewActions to run in tandem.
+ *
+ *  @note Each element in the actionGroup array may be any type of RZViewAction.
+ *  This means that you can comebine group and sequence actions in any way you see fit.
+ */
++ (RZViewAction *)group:(NSArray *)actionGroup;
+
+/**
  *  Returns a new sequence action. Sequence actions behave like a queue in that actions are executed serially.
  *  Completion blocks for sequence actions are not invoked until after all actions in the sequence have finished.
  *
@@ -114,18 +127,23 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
  *  @note Each element in the actionGroup array may be any type of RZViewAction. 
  *  This means that you can comebine sequence and group actions in any way you see fit.
  */
-+ (RZViewAction *)sequence:(NSArray *)actionSequence;
++ (RZViewActionSequence *)sequence:(NSArray *)actionSequence;
+
+@end
 
 /**
- *  Returns a new group action. Group actions run all actions in the group together, and do not wait for an action to finish
- *  before executing the next one.
- *  Completion blocks for group actions are not invoked until after all actions in the group have finished.
- *
- *  @param actionSequence An array of RZViewActions to run in tandem.
- *
- *  @note Each element in the actionGroup array may be any type of RZViewAction. 
- *  This means that you can comebine group and sequence actions in any way you see fit.
+ *  A series of RZViewActions that are run sequentially. The sequence duration is the sum of the durations of its actions.
  */
-+ (RZViewAction *)group:(NSArray *)actionGroup;
+@interface RZViewActionSequence : RZViewAction
+
+/**
+ *  Appends an action to the end of the sequence, and extends the sequence duration.
+ *
+ *  @param action The action to append to the end of the sequence
+ *
+ *  @note If the sequence is in-flight, it's animation duration will be extended and completion block
+ *  deferred until the original sequence plus the appended action are complete.
+ */
+- (void)appendAction:(RZViewAction *)action;
 
 @end

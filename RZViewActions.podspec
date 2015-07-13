@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "RZViewActions"
-  s.version          = "0.2.1"
+  s.version          = "0.3.0"
   s.summary          = "Sequenced and grouped animations for UIView"
   s.description      = <<-DESC
                        A category on UIView that provides animation structure similar to SKAction from SpriteKit.

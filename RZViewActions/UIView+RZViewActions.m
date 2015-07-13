@@ -44,17 +44,17 @@
 @interface RZViewWaitAction : RZViewAction
 @end
 
-@interface RZViewSequenceAction : RZViewAction
-@property (copy, nonatomic) NSArray *actions;
-@end
-
 @interface RZViewSpringAction : RZViewAction
 @property (assign, nonatomic) CGFloat damping;
 @property (assign, nonatomic) CGFloat initialVelocity;
 @end
 
-@interface RZViewGroupAction : RZViewAction
+@interface RZViewActionGroup : RZViewAction
 @property (copy, nonatomic) NSArray *actions;
+@end
+
+@interface RZViewActionSequence ()
+@property (strong, nonatomic) NSMutableArray *actions;
 @end
 
 #pragma mark - RZViewActions implementation
@@ -108,17 +108,17 @@
     return waitAction;
 }
 
-+ (RZViewAction *)sequence:(NSArray *)actionSequence
++ (RZViewActionSequence *)sequence:(NSArray *)actionSequence
 {
-    RZViewSequenceAction *sequence = [[RZViewSequenceAction alloc] init];
-    sequence.actions = actionSequence;
+    RZViewActionSequence *sequence = [[RZViewActionSequence alloc] init];
+    sequence.actions = [actionSequence mutableCopy];
     
     return sequence;
 }
 
 + (RZViewAction *)group:(NSArray *)actionGroup
 {
-    RZViewGroupAction *group = [[RZViewGroupAction alloc] init];
+    RZViewActionGroup *group = [[RZViewActionGroup alloc] init];
     group.actions = actionGroup;
     
     return group;
@@ -180,15 +180,54 @@
 
 @end
 
-#pragma mark - RZViewSequenceAction implementation
+#pragma mark - RZViewActionGroup implementation
 
-@implementation RZViewSequenceAction
+@implementation RZViewActionGroup
 
 - (void)setActions:(NSArray *)actions
 {
     _actions = [actions copy];
+
+    self.duration = [[actions valueForKeyPath:@"@max.duration"] doubleValue];
+}
+
+- (void)rz_runWithCompletion:(RZViewActionCompletion)completion
+{
+    dispatch_group_t actionGroup = dispatch_group_create();
+
+    [self.actions enumerateObjectsUsingBlock:^(RZViewAction *action, NSUInteger idx, BOOL *stop) {
+        dispatch_group_enter(actionGroup);
+
+        [action rz_runWithCompletion:^(BOOL finished) {
+            dispatch_group_leave(actionGroup);
+        }];
+    }];
+
+    if ( completion != nil ) {
+        dispatch_group_notify(actionGroup, dispatch_get_main_queue(), ^{
+            completion(YES);
+        });
+    }
+}
+
+@end
+
+#pragma mark - RZViewActionSequence implementation
+
+@implementation RZViewActionSequence
+
+- (void)setActions:(NSMutableArray *)actions
+{
+    _actions = actions;
     
     self.duration = [[actions valueForKeyPath:@"@sum.duration"] doubleValue];
+}
+
+- (void)appendAction:(RZViewAction *)action
+{
+    [self.actions addObject:action];
+
+    self.duration += action.duration;
 }
 
 - (void)rz_runWithCompletion:(RZViewActionCompletion)completion
@@ -205,38 +244,6 @@
     }
     else if ( completion != nil ) {
         completion(YES);
-    }
-}
-
-@end
-
-#pragma mark - RZViewGroupAction implementation
-
-@implementation RZViewGroupAction
-
-- (void)setActions:(NSArray *)actions
-{
-    _actions = [actions copy];
-    
-    self.duration = [[actions valueForKeyPath:@"@max.duration"] doubleValue];
-}
-
-- (void)rz_runWithCompletion:(RZViewActionCompletion)completion
-{
-    dispatch_group_t actionGroup = dispatch_group_create();
-    
-    [self.actions enumerateObjectsUsingBlock:^(RZViewAction *action, NSUInteger idx, BOOL *stop) {
-        dispatch_group_enter(actionGroup);
-        
-        [action rz_runWithCompletion:^(BOOL finished) {
-            dispatch_group_leave(actionGroup);
-        }];
-    }];
-    
-    if ( completion != nil ) {
-        dispatch_group_notify(actionGroup, dispatch_get_main_queue(), ^{
-            completion(YES);
-        });
     }
 }
 

@@ -39,6 +39,8 @@
 typedef void (^RZViewActionBlock)();
 typedef void (^RZViewActionCompletion)(BOOL finished);
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIView (RZViewActions)
 
 /**
@@ -52,11 +54,11 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
  *  Runs an action using UIView animations and calls a completion block when finished.
  *
  *  @param action     The action to run.
- *  @param completion Called when the action finishes. The finished parameter will be YES if the action completed successfully, and NO if it was cancelled.
+ *  @param completion Called when the action finishes. The finished parameter will be YES if the action completed successfully, and NO if it was canceled.
  *
  *  @note The completion block is used as a UIView animation completion block, so will avoid retain cycles.
  */
-+ (void)rz_runAction:(RZViewAction *)action withCompletion:(RZViewActionCompletion)completion;
++ (void)rz_runAction:(RZViewAction *)action withCompletion:(nullable RZViewActionCompletion)completion;
 
 @end
 
@@ -136,6 +138,8 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
  */
 @interface RZViewActionSequence : RZViewAction
 
+@property (assign, nonatomic, readonly, getter=isCanceled) BOOL canceled;
+
 /**
  *  Appends an action to the end of the sequence, and extends the sequence duration.
  *
@@ -146,4 +150,16 @@ typedef void (^RZViewActionCompletion)(BOOL finished);
  */
 - (void)appendAction:(RZViewAction *)action;
 
+/**
+ *  Cancels an in-flight sequence, and calls the completion block with the finished flag set to NO.
+ *  The completion block will not be called until the current running animation in the sequence completes.
+ * 
+ *  Once a sequence is canceled, it can no longer be run.
+ *
+ *  @note Canceling a sequence that is not in-flight does nothing, and does not call the completion block.
+ */
+- (void)cancel;
+
 @end
+
+NS_ASSUME_NONNULL_END

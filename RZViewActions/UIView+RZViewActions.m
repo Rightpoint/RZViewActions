@@ -239,12 +239,24 @@
 {
     if ( index < [self.actions count] ) {
         [self.actions[index] rz_runWithCompletion:^(BOOL finished) {
-            [self rz_runActionAtIndex:index+1 withCompletion:completion];
+            if ( self.isCanceled ) {
+                if ( completion != nil ) {
+                    completion(NO);
+                }
+            }
+            else {
+                [self rz_runActionAtIndex:index+1 withCompletion:completion];
+            }
         }];
     }
     else if ( completion != nil ) {
         completion(YES);
     }
+}
+
+- (void)cancel
+{
+    _canceled = YES;
 }
 
 @end
